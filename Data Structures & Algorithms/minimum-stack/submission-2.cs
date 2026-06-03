@@ -1,0 +1,37 @@
+public class MinStack {
+
+    private Stack<int> stack;
+    private Stack<int> minStack;
+    public MinStack() {
+         stack = new Stack<int>();
+         minStack = new Stack<int>();
+    }
+    
+    public void Push(int val) {
+        stack.Push(val);
+        if ((minStack.Count == 0)  || (val <= minStack.Peek()))
+        {
+            minStack.Push(val);
+        }
+    }
+    
+    public void Pop() {
+        if(stack.Count == 0) return;
+        int val = stack.Pop();
+        if (val == minStack.Peek()) minStack.Pop();
+    }
+    
+    public int Top() {
+                if (stack.Count == 0)
+            throw new InvalidOperationException("Stack is empty");
+        return stack.Peek();
+        
+    }
+    
+    public int GetMin() {
+                if (minStack.Count == 0)
+            throw new InvalidOperationException("Stack is empty");
+        return minStack.Peek();
+        
+    }
+}
